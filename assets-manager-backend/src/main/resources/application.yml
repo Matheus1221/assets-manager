@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: assets-manager
+  datasource:
+    url:  jdbc:postgresql://localhost:5432/assets
+    username: user
+    password: password
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+  sql:
+    init:
+      mode: always
+
+
+
