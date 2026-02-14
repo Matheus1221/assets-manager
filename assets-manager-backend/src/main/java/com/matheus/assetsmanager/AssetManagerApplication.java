@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class AssetsManagerApplication {
+public class AssetManagerApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(AssetsManagerApplication.class, args);
+        SpringApplication.run(AssetManagerApplication.class, args);
     }
 
 }
