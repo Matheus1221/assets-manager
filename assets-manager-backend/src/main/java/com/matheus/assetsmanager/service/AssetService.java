@@ -1,7 +1,9 @@
 package com.matheus.assetsmanager.service;
 import com.matheus.assetsmanager.model.Asset;
 import com.matheus.assetsmanager.repository.AssetsRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -20,7 +22,7 @@ public class AssetService {
 
     public Asset findById(Long id) {
         return repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Asset not found"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Asset not found"));
     }
 
     public Asset save(Asset asset) {
