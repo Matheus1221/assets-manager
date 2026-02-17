@@ -8,7 +8,7 @@ import Alert from '@mui/material/Alert';
 import { type AssetFormData } from '../schemas/Assets';
 import Box from '@mui/material/Box';
 
-export function Dashboard() {
+export default function Dashboard() {
 
     const [assets, setAssets] = useState<Asset[]>([]);
     const [feedback, setFeedback] = useState<"success" | "error" | null>(null);
