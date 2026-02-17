@@ -1,6 +1,6 @@
 import { DataGrid, type GridColDef } from '@mui/x-data-grid';
 import type Asset from '../types/Asset';
-import { categoryCopies, statusCopies } from "../components/AssetForm";
+import { categoryCopies, statusCopies } from "./AssetForm";
 import EditNoteIcon from '@mui/icons-material/EditNote';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 

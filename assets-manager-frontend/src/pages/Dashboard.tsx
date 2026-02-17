@@ -5,7 +5,7 @@ import { AssetForm } from "../components/AssetForm";
 import { getAssets, deleteAsset, createAsset, updateAsset } from "../services/api";
 import Snackbar, { type SnackbarCloseReason } from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
-import { type AssetFormData } from '../schemas/assets';
+import { type AssetFormData } from '../schemas/Assets';
 import Box from '@mui/material/Box';
 
 export function Dashboard() {
@@ -40,7 +40,6 @@ export function Dashboard() {
             setFeedback("success");
             setEditing(null);
         } catch (error) {
-            console.log
             setFeedback("error");
         }
     };
@@ -56,29 +55,27 @@ export function Dashboard() {
     };
 
     return (
-        <>
-            <Box sx={{ maxWidth: 900, mx: 'auto', mt: 4 }}>
-                <AssetForm
-                    onSubmit={onSubmit}
-                    editing={editing}
-                    setEditing={setEditing}
-                />
-                <AssetGrid
-                    assets={assets}
-                    onDelete={handleDelete}
-                    onEdit={setEditing}
-                />
-                <Snackbar open={feedback != null} autoHideDuration={3000} onClose={handleClose}>
-                    {feedback ? <Alert
-                        onClose={handleClose}
-                        severity={feedback}
-                        variant="filled"
-                        sx={{ width: '100%' }}
-                    >
-                        {feedback == "success" ? 'Ativo criado com sucesso' : 'Erro ao criar Ativo'}
-                    </Alert> : <div />}
-                </Snackbar>
-            </Box>
-        </>
+        <Box sx={{ maxWidth: 900, mx: 'auto', mt: 4 }}>
+            <AssetForm
+                onSubmit={onSubmit}
+                editing={editing}
+                setEditing={setEditing}
+            />
+            <AssetGrid
+                assets={assets}
+                onDelete={handleDelete}
+                onEdit={setEditing}
+            />
+            <Snackbar open={feedback != null} autoHideDuration={3000} onClose={handleClose}>
+                {feedback ? <Alert
+                    onClose={handleClose}
+                    severity={feedback}
+                    variant="filled"
+                    sx={{ width: '100%' }}
+                >
+                    {feedback == "success" ? 'Ativo criado com sucesso' : 'Erro ao criar Ativo'}
+                </Alert> : <div />}
+            </Snackbar>
+        </Box>
     )
 }

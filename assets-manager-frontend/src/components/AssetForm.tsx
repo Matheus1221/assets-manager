@@ -13,7 +13,7 @@ import {
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { assetSchema, type AssetFormData } from '../schemas/assets';
+import { assetSchema, type AssetFormData } from '../schemas/Assets';
 import Box from '@mui/material/Box';
 import dayjs from 'dayjs';
 import type Asset from "../types/Asset";
@@ -96,7 +96,6 @@ export function AssetForm({ onSubmit, editing, setEditing }: Props) {
                 )}
             />
 
-            {/* Serial */}
             <Controller
                 name="serialNumber"
                 control={control}
@@ -160,7 +159,6 @@ export function AssetForm({ onSubmit, editing, setEditing }: Props) {
                 )}
             />
 
-            {/* Data */}
             <Controller
                 name="acquisitionDate"
                 control={control}
@@ -184,8 +182,7 @@ export function AssetForm({ onSubmit, editing, setEditing }: Props) {
                 )}
             />
 
-            {/* Botões */}
-            <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2, gap: 2 }}>
+            <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2, gap: 2, mb: 3 }}>
                 <Button variant="contained" type="submit">
                     {editing ? 'Atualizar' : 'Cadastrar'}
                 </Button>
@@ -199,7 +196,6 @@ export function AssetForm({ onSubmit, editing, setEditing }: Props) {
                     </Button>
                 )}
             </Box>
-
         </form>
     );
 }
