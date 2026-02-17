@@ -82,7 +82,6 @@ export function AssetForm({ onSubmit, editing, setEditing }: Props) {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
-
             <Controller
                 name="name"
                 control={control}
@@ -178,6 +177,7 @@ export function AssetForm({ onSubmit, editing, setEditing }: Props) {
                                     margin: 'normal'
                                 }
                             }}
+                            format="DD/MM/YYYY"
                         />
                     </LocalizationProvider>
                 )}

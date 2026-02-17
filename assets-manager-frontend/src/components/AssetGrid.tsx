@@ -5,6 +5,7 @@ import DeleteForeverTwoToneIcon from '@mui/icons-material/DeleteForeverTwoTone';
 import EditNoteIcon from '@mui/icons-material/EditNote';
 
 import { Box } from '@mui/material';
+import dayjs from 'dayjs';
 
 interface Props {
   assets: Asset[];
@@ -21,13 +22,11 @@ export default function AssetGrid({ assets, onDelete, onEdit }: Props) {
 
     { field: 'serialNumber', headerName: 'Serial', width: 120 },
 
-    {
-      field: 'category', headerName: 'Categoria', width: 120, valueFormatter: (params) => categoryCopies[params!] || params
-    },
+    { field: 'category', headerName: 'Categoria', width: 120, valueFormatter: (value) => categoryCopies[value!] || value },
 
-    { field: 'status', headerName: 'Status', width: 120, valueFormatter: (params) => statusCopies[params!] || params },
+    { field: 'status', headerName: 'Status', width: 120, valueFormatter: (value) => statusCopies[value!] || value },
 
-    { field: 'acquisitionDate', headerName: 'Data', width: 120 },
+    { field: 'acquisitionDate', headerName: 'Data', width: 120, valueFormatter: (value) => value ? dayjs(value).format("DD/MM/YYYY") : null },
     {
       field: 'actions',
       headerName: 'Ações',

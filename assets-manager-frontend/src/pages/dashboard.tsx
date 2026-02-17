@@ -75,7 +75,7 @@ export function Dashboard() {
                         variant="filled"
                         sx={{ width: '100%' }}
                     >
-                        {feedback == "success" ? 'Asset criado com sucesso' : 'Erro ao criar asset'}
+                        {feedback == "success" ? 'Ativo criado com sucesso' : 'Erro ao criar Ativo'}
                     </Alert> : <div />}
                 </Snackbar>
             </Box>
