@@ -7,6 +7,7 @@ import {
     InputLabel,
     MenuItem,
     FormControl,
+    FormHelperText,
     Select
 } from "@mui/material";
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
@@ -16,8 +17,6 @@ import { assetSchema, type AssetFormData } from '../schemas/assets';
 import Box from '@mui/material/Box';
 import dayjs from 'dayjs';
 import type Asset from "../types/Asset";
-
-// Matheus Felix... teste de Vaga Dsenvolvedor FullStack
 
 interface Props {
     onSubmit: (asset: AssetFormData) => void;
@@ -88,7 +87,7 @@ export function AssetForm({ onSubmit, editing, setEditing }: Props) {
                 render={({ field }) => (
                     <TextField
                         {...field}
-                        label="Nome"
+                        label="Nome *"
                         fullWidth
                         margin="normal"
                         error={!!errors.name}
@@ -104,7 +103,7 @@ export function AssetForm({ onSubmit, editing, setEditing }: Props) {
                 render={({ field }) => (
                     <TextField
                         {...field}
-                        label="Serial Number"
+                        label="Serial Number *"
                         fullWidth
                         margin="normal"
                         error={!!errors.serialNumber}
@@ -118,10 +117,10 @@ export function AssetForm({ onSubmit, editing, setEditing }: Props) {
                 control={control}
                 render={({ field }) => (
                     <FormControl fullWidth margin="normal">
-                        <InputLabel>Categoria</InputLabel>
+                        <InputLabel>Categoria *</InputLabel>
                         <Select
                             {...field}
-                            label="Categoria"
+                            label="Categoria *"
                             value={field.value || ''}
                             onChange={(event) => field.onChange(event.target.value)}
                             error={!!errors.category}
@@ -132,6 +131,7 @@ export function AssetForm({ onSubmit, editing, setEditing }: Props) {
                                 </MenuItem>
                             ))}
                         </Select>
+                        <FormHelperText error={true}>{errors.category?.message}</FormHelperText>
                     </FormControl>
                 )}
             />
@@ -141,7 +141,7 @@ export function AssetForm({ onSubmit, editing, setEditing }: Props) {
                 control={control}
                 render={({ field }) => (
                     <FormControl fullWidth margin="normal">
-                        <InputLabel>Status</InputLabel>
+                        <InputLabel>Status *</InputLabel>
                         <Select
                             {...field}
                             label="Status"
@@ -155,6 +155,7 @@ export function AssetForm({ onSubmit, editing, setEditing }: Props) {
                                 </MenuItem>
                             ))}
                         </Select>
+                        <FormHelperText error={true}>{errors.status?.message}</FormHelperText>
                     </FormControl>
                 )}
             />

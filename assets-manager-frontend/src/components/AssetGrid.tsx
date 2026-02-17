@@ -1,10 +1,10 @@
 import { DataGrid, type GridColDef } from '@mui/x-data-grid';
 import type Asset from '../types/Asset';
 import { categoryCopies, statusCopies } from "../components/AssetForm";
-import DeleteForeverTwoToneIcon from '@mui/icons-material/DeleteForeverTwoTone';
 import EditNoteIcon from '@mui/icons-material/EditNote';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
-import { Box } from '@mui/material';
+import { Box, IconButton } from '@mui/material';
 import dayjs from 'dayjs';
 
 interface Props {
@@ -32,12 +32,12 @@ export default function AssetGrid({ assets, onDelete, onEdit }: Props) {
       headerName: 'Ações',
       renderCell: (params) => (
         <>
-          <EditNoteIcon
-            onClick={() => onEdit(params.row)}
-          />
-          <DeleteForeverTwoToneIcon
-            onClick={() => onDelete(params.row.id)}
-          />
+          <IconButton aria-label="edit" color="info" onClick={() => onEdit(params.row)}>
+            <EditNoteIcon />
+          </IconButton>
+          <IconButton aria-label="edit" color="error" onClick={() => onDelete(params.row.id)}>
+            <DeleteOutlineIcon />
+          </IconButton>
         </>
       )
     }
