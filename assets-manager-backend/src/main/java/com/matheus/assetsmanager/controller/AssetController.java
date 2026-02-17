@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/assets")
-@CrossOrigin
+@CrossOrigin(origins = "*")
 public class AssetController {
 
     private final AssetService service;
