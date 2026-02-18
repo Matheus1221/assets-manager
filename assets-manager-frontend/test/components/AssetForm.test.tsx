@@ -1,9 +1,9 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { AssetForm, categoryCopies, statusCopies } from "./AssetForm";
+import { AssetForm, categoryCopies, statusCopies } from "../../src/components/AssetForm";
 import dayjs from "dayjs";
-import type { AssetFormData } from "../schemas/assets";
+import type { AssetFormData } from "../../src/schemas/assets";
 
 describe("AssetForm Component", () => {
   const mockSubmit = vi.fn<(data: AssetFormData) => void>();
