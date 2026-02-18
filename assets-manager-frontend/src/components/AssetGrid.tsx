@@ -1,4 +1,4 @@
-import { DataGrid, type GridColDef, type GridRenderCellParams } from '@mui/x-data-grid';
+import { DataGrid, useGridApiRef, type GridColDef, type GridRenderCellParams } from '@mui/x-data-grid';
 import type Asset from '../types/Asset';
 import { categoryCopies, statusCopies } from "./AssetForm";
 import EditNoteIcon from '@mui/icons-material/EditNote';
@@ -11,6 +11,7 @@ import { Box, Chip, IconButton } from '@mui/material';
 import dayjs from 'dayjs';
 import type { Status } from '../types/Asset';
 import type { ReactElement } from 'react';
+import { AssetToolbar } from './AssetToolbar';
 
 interface Props {
   assets: Asset[];
@@ -19,6 +20,8 @@ interface Props {
 }
 
 export default function AssetGrid({ assets, onDelete, onEdit }: Props) {
+
+  const apiRef = useGridApiRef();
 
   const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID', width: 120 },
@@ -32,7 +35,7 @@ export default function AssetGrid({ assets, onDelete, onEdit }: Props) {
     {
       field: 'status', headerName: 'Status', width: 170,
       renderCell: (params: GridRenderCellParams<Asset, Status>) => {
-        const statusStyle: Record<Status, { color: 'error' | 'info' | 'success' | 'warning', icon: ReactElement}> = {
+        const statusStyle: Record<Status, { color: 'error' | 'info' | 'success' | 'warning', icon: ReactElement }> = {
           available: {
             color: "success",
             icon: <CheckCircleOutlineIcon />
@@ -52,7 +55,7 @@ export default function AssetGrid({ assets, onDelete, onEdit }: Props) {
         }
         const style = statusStyle[params.value!];
 
-        return <Chip icon={style.icon} label={statusCopies[params.value!] || params.value} color={style.color} style={{opacity: 0.8}}/>;
+        return <Chip icon={style.icon} label={statusCopies[params.value!] || params.value} color={style.color} style={{ opacity: 0.8 }} />;
       }
     },
 
@@ -75,8 +78,9 @@ export default function AssetGrid({ assets, onDelete, onEdit }: Props) {
 
   return (
     <Box sx={{ height: 400, width: '100%', }}>
-      <DataGrid
+      <DataGrid<Asset>
         sx={{ backgroundColor: "transparent" }}
+        apiRef={apiRef}
         rows={assets}
         columns={columns}
         initialState={{
@@ -87,7 +91,13 @@ export default function AssetGrid({ assets, onDelete, onEdit }: Props) {
           },
         }}
         pageSizeOptions={[5]}
-        disableRowSelectionOnClick
+        disableRowSelectionOnClick={true}
+        slots={{
+          // detailPanelExpandIcon: CustomExpandIcon,
+          // detailPanelCollapseIcon: CustomCollapseIcon,
+          toolbar: AssetToolbar,
+        }}
+        showToolbar
       />
     </Box>
   );
