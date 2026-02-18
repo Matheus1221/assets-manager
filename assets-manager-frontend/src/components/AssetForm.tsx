@@ -52,8 +52,8 @@ export function AssetForm({ onSubmit, editing, setEditing }: Props) {
     defaultValues: {
       name: "",
       serialNumber: "",
-      category: "",
-      status: "",
+      category: undefined,
+      status: undefined,
       acquisitionDate: null,
     },
   });
@@ -71,8 +71,8 @@ export function AssetForm({ onSubmit, editing, setEditing }: Props) {
       reset({
         name: "",
         serialNumber: "",
-        category: "",
-        status: "",
+        category: undefined,
+        status: undefined,
         acquisitionDate: null,
       });
     }
