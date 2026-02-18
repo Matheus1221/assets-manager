@@ -93,8 +93,6 @@ export default function AssetGrid({ assets, onDelete, onEdit }: Props) {
         pageSizeOptions={[5]}
         disableRowSelectionOnClick={true}
         slots={{
-          // detailPanelExpandIcon: CustomExpandIcon,
-          // detailPanelCollapseIcon: CustomCollapseIcon,
           toolbar: AssetToolbar,
         }}
         showToolbar
