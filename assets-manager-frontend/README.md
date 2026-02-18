@@ -1,73 +1,177 @@
-# React + TypeScript + Vite
+# Assets Manager
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Sistema full stack para gerenciamento de ativos (assets) de uma empresa, como computadores, monitores e periféricos.
 
-Currently, two official plugins are available:
+Este projeto foi desenvolvido utilizando **React, TypeScript, Spring Boot e PostgreSQL**, com execução completa via **Docker Compose**, permitindo rodar todo o ambiente de forma simples e reproduzível.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+# Funcionalidades
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Criar novo ativo
+- Listar ativos em um grid
+- Editar ativos existentes
+- Remover ativos
+- Filtrar ativos por categoria
+- Filtrar ativos por status
+- Validação de dados no formulário
+- Feedback visual para o usuário
+- Integração completa com API REST
+- Execução completa via Docker
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+# Tecnologias utilizadas
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Frontend
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- React
+- TypeScript
+- Vite
+- Material UI
+- React Hook Form
+- Zod
+- Axios
+- Dayjs
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Backend
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- Java 17
+- Spring Boot
+- Spring Data JPA
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Banco de dados
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- PostgreSQL
+
+## DevOps
+
+- Docker
+- Docker Compose
+
+---
+
+# Arquitetura
+
+O projeto está dividido em dois serviços:
+
+assets-manager
+│
+├── assets-manager-frontend
+│
+├── assets-manager-backend
+│
+└── docker-compose.yml
+
+O frontend consome os dados através da API REST exposta pelo backend.
+
+---
+
+# Como executar o projeto
+
+## Pré-requisitos
+
+Ter instalado:
+
+- Docker
+- Docker Compose
+
+---
+
+## Passo a passo
+
+Clone o repositório:
+
+```bash
+git clone https://github.com/Matheus1221/assets-manager.git
+Entre na pasta:
+
+cd assets-manager
+Execute o Docker Compose:
+
+docker compose up --build
+Acesso à aplicação
+Frontend:
+
+http://localhost:5173
+Backend:
+
+http://localhost:8080
+API REST
+Base URL:
+
+http://localhost:8080/assets
+Endpoints disponíveis:
+
+Método	Endpoint	Descrição
+GET	/assets	Listar todos os ativos
+POST	/assets	Criar novo ativo
+PUT	/assets/{id}	Atualizar ativo
+DELETE	/assets/{id}	Remover ativo
+Estrutura de um ativo
+Exemplo:
+
+{
+  "name": "Notebook Dell",
+  "serialNumber": "ABC123",
+  "category": "COMPUTER",
+  "status": "AVAILABLE",
+  "acquisitionDate": "2024-01-01"
+}
+Regras de validação
+Campo	Regra
+name	obrigatório
+serialNumber	obrigatório
+category	obrigatório
+status	obrigatório
+acquisitionDate	opcional
+Decisões técnicas
+React Hook Form + Zod
+Utilizados para garantir validação eficiente, tipagem segura e melhor performance no formulário.
+
+Material UI
+Utilizado para construção da interface e do grid de listagem, proporcionando melhor experiência do usuário.
+
+Spring Boot
+Utilizado no backend para construção da API REST e gerenciamento da lógica de negócio.
+
+PostgreSQL
+Utilizado como banco de dados relacional, executado via Docker.
+
+Docker Compose
+Utilizado para subir frontend, backend e banco de dados com um único comando, garantindo ambiente reproduzível.
+
+Testes manuais recomendados
+Criar um novo ativo
+
+Editar um ativo existente
+
+Remover um ativo
+
+Testar validação de campos obrigatórios
+
+Testar filtros por categoria e status
+
+Reiniciar os containers e validar funcionamento
+
+Execução via Docker
+Todo o ambiente é executado via Docker Compose.
+
+Nenhuma instalação adicional é necessária além do Docker.
+
+Melhorias futuras
+Testes automatizados
+
+Paginação
+
+Autenticação de usuários
+
+Deploy em ambiente cloud
+
+Autor
+Matheus
+
+GitHub:
+
+https://github.com/Matheus1221/assets-manager
 ```
